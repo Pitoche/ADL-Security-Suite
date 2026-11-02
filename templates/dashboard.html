@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADL Security Suite</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1e293b;
+}
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background: #10243a;
+    color: white;
+    position: fixed;
+    padding: 25px 15px;
+    box-sizing: border-box;
+}
+.sidebar h2 { font-size: 20px; }
+.sidebar a {
+    display: block;
+    color: #dbeafe;
+    text-decoration: none;
+    padding: 14px 10px;
+}
+.sidebar a:hover { background: #1e3a5f; }
+.main {
+    margin-left: 240px;
+    padding: 40px;
+}
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.card {
+    background: white;
+    padding: 25px;
+    width: 260px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0001;
+}
+.card h3 { color: #2563eb; }
+.card a {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.disabled {
+    color: #64748b;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+<h2>ADL SECURITY SUITE</h2>
+<a href="/">Dashboard</a>
+<a href="{{ iot_url }}">IoT Vulnerability</a>
+<a href="#dos">DoS Testing</a>
+<a href="/reports">Evidence & Reports</a>
+<a href="#passwords">Password Manager</a>
+</aside>
+
+<main class="main">
+<h1>Security Dashboard</h1>
+<p>Unified cybersecurity assessment platform</p>
+
+<div class="cards">
+
+<section class="card">
+<h3>IoT Vulnerability</h3>
+<p>Device and firmware security assessment.</p>
+<a href="{{ iot_url }}">Open IoT Tool</a>
+</section>
+
+<section class="card" id="dos">
+<h3>Guard</h3>
+<p>Application-layer DoS testing and monitoring.</p>
+<a href="http://192.168.42.8:5001/tests/dashboard">
+    Open Guard
+</a>
+</section>
+
+
+<section class="card" id="reports">
+<h3>Evidence & Reporting</h3>
+<p>Centralised findings, artefacts and remediation.</p>
+<a href="/reports">Open Evidence & Reporting</a>
+</section>
+
+
+<section class="card" id="passwords">
+<h3>Password Manager</h3>
+<p>Password management and security tools.</p>
+<p class="disabled">Integration pending</p>
+</section>
+
+</div>
+</main>
+</body>
+</html>
