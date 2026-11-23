@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IoT Scanning Tools - ADL Security Suite</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1e293b;
+}
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background: #10243a;
+    color: white;
+    position: fixed;
+    padding: 25px 15px;
+    box-sizing: border-box;
+}
+.sidebar h2 { font-size: 20px; }
+.sidebar a {
+    display: block;
+    color: #dbeafe;
+    text-decoration: none;
+    padding: 14px 10px;
+}
+.sidebar a:hover { background: #1e3a5f; }
+.main {
+    margin-left: 240px;
+    padding: 40px;
+}
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.card {
+    background: white;
+    padding: 25px;
+    width: 260px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0001;
+}
+.card h3 { color: #2563eb; }
+.tool {
+    padding: 10px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.status {
+    color: #64748b;
+    font-size: 13px;
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+<h2>ADL SECURITY SUITE</h2>
+<a href="/">Dashboard</a>
+<a href="/iot/scanners">IoT Scanning Tools</a>
+<a href="/iot/projects">IoT Projects</a>
+<a href="/reports">Evidence & Reports</a>
+</aside>
+
+<main class="main">
+<h1>IoT Scanning Tools</h1>
+<p>Available vulnerability assessment tools</p>
+<p class="status">Scan execution is currently disabled during integration.</p>
+
+<div class="cards">
+{% for category, tools in categories.items() %}
+<section class="card">
+<h3>{{ category|replace('-', ' ')|title }} Analysis</h3>
+
+{% for tool in tools %}
+<div class="tool">
+<strong>{{ tool }}</strong>
+<div class="status">Available in catalogue — execution disabled</div>
+</div>
+{% endfor %}
+
+</section>
+{% endfor %}
+</div>
+
+</main>
+</body>
+</html>

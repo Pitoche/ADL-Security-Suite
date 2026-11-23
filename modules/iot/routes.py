@@ -170,11 +170,10 @@ def create_project():
 @login_required
 def scanner_catalogue():
     """List approved IoT scanning tools without executing them."""
-    from flask import jsonify
+    from flask import render_template
     from .scanner_catalog import SCANNER_CATALOG
 
-    return jsonify({
-        "categories": SCANNER_CATALOG,
-        "total_tools": sum(len(tools) for tools in SCANNER_CATALOG.values()),
-        "execution_enabled": False,
-    })
+    return render_template(
+        "iot_scanners.html",
+        categories=SCANNER_CATALOG,
+    )
