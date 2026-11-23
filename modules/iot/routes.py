@@ -1,3 +1,4 @@
+from pathlib import Path
 from modules.auth.routes import login_required
 from flask import Blueprint, jsonify, current_app
 from flask_wtf.csrf import generate_csrf, validate_csrf
@@ -128,8 +129,14 @@ def create_project():
     settings = config["DEFAULT"]
     db_path = get_iot_db_path()
 
-    # Prevent writes to the original database during initial testing.
-    if db_path == DEFAULT_IOT_DB:
+    # Production writes require separate explicit authorisation.
+    is_live_db = (
+        Path(db_path).resolve() == Path(DEFAULT_IOT_DB).resolve()
+    )
+
+    if is_live_db and not current_app.config.get(
+        "IOT_ALLOW_LIVE_WRITES", False
+    ):
         return "Live database writes are not enabled", 403
 
     with sqlite3.connect(db_path) as conn:
