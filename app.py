@@ -1,6 +1,6 @@
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from modules.auth.routes import auth_bp
+from modules.auth.routes import auth_bp, login_required
 from modules.iot.routes import iot_bp
 
 import os
@@ -48,6 +48,7 @@ GUARD_DB = "/home/angel/ADL-TEST-GUARD/instance/adl_guard.db"
 
 
 @app.route("/")
+@login_required
 def dashboard():
     return render_template(
         "dashboard.html",
@@ -59,6 +60,7 @@ def dashboard():
 
 
 @app.route("/reports")
+@login_required
 def reports():
     assessments = []
     guard_error = None

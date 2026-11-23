@@ -33,6 +33,7 @@ def health():
 
 
 @iot_bp.route("/projects")
+@login_required
 def projects():
     import sqlite3
     from flask import render_template
@@ -53,6 +54,7 @@ def projects():
 
 
 @iot_bp.route("/project/<int:project_id>")
+@login_required
 def project_details(project_id):
     import sqlite3
     from flask import abort, render_template
