@@ -172,8 +172,10 @@ def scanner_catalogue():
     """List approved IoT scanning tools without executing them."""
     from flask import render_template
     from .scanner_catalog import SCANNER_CATALOG
+    from .scanner_paths import scanner_inventory
 
     return render_template(
         "iot_scanners.html",
         categories=SCANNER_CATALOG,
+        inventory=scanner_inventory(),
     )

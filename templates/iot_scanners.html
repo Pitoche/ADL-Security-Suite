@@ -78,7 +78,13 @@ body {
 {% for tool in tools %}
 <div class="tool">
 <strong>{{ tool }}</strong>
-<div class="status">Available in catalogue — execution disabled</div>
+{% if inventory[category][tool]["script_exists"] %}
+<div class="status">Script found — execution disabled</div>
+{% else %}
+<div class="status" style="color: #b91c1c;">
+Script missing — unavailable
+</div>
+{% endif %}
 </div>
 {% endfor %}
 
