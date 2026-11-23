@@ -27,3 +27,5 @@ __pycache__/
 *.swp
 *~
 *.back
+.flask_secret_key
+.admin_password_hash

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IoT Project Details | ADL Security Suite</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1e293b;
+    margin: 40px;
+}
+h1 { color: #10243a; }
+table {
+    border-collapse: collapse;
+    background: white;
+    width: 100%;
+}
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+th { width: 220px; background: #e9eff8; }
+a { color: #2563eb; }
+</style>
+</head>
+<body>
+<p><a href="/iot/projects">Back to IoT Projects</a></p>
+<h1>{{ project.project_name }}</h1>
+<h2>Project Configuration</h2>
+
+<table>
+{% for field, value in project.items() %}
+<tr>
+    <th>{{ field.replace('_', ' ').title() }}</th>
+    <td>{{ value if value is not none else '' }}</td>
+</tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

@@ -1,9 +1,24 @@
+from modules.auth.routes import auth_bp
+from modules.iot.routes import iot_bp
 
 import os
+from pathlib import Path
 import sqlite3
 from flask import Flask, render_template
 
 app = Flask(__name__)
+
+# Local session configuration
+app.config["SECRET_KEY"] = (
+    Path(__file__).resolve().parent / ".flask_secret_key"
+).read_text().strip()
+
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+
+
+app.register_blueprint(iot_bp)
+app.register_blueprint(auth_bp)
 
 GUARD_DB = "/home/angel/ADL-TEST-GUARD/instance/adl_guard.db"
 

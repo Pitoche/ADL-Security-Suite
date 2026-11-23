@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ADL Security Suite - Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .login-box {
+            background: white;
+            padding: 35px;
+            border-radius: 8px;
+            width: 340px;
+            box-shadow: 0 4px 15px #0002;
+        }
+        h2 { color: #142b49; }
+        input[type=password] {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            margin: 12px 0;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1765b3;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .error { color: #b00020; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>ADL Security Suite</h2>
+        <p>Administrator Login</p>
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            <input type="hidden"
+                   name="csrf_token"
+                   value="{{ csrf_token() }}">
+
+            <label for="password">Password</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   autocomplete="current-password"
+                   required>
+
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+</body>
+</html>

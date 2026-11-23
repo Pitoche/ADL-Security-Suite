@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Create IoT Project | ADL Security Suite</title>
+<style>
+body { font-family: Arial, sans-serif; background: #f4f7fb; padding: 35px; color: #1e293b; }
+form { background: white; padding: 25px; max-width: 550px; border-radius: 8px; }
+label { display: block; margin-top: 15px; font-weight: bold; }
+input, select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; }
+button { margin-top: 25px; padding: 12px 20px; background: #2563eb; color: white; border: 0; cursor: pointer; }
+a { color: #2563eb; }
+</style>
+</head>
+<body>
+<p><a href="/iot/projects">Back to Projects</a></p>
+<h1>Create IoT Project</h1>
+
+<form method="POST">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<label>Project Name</label>
+<input name="project_name" required maxlength="200">
+
+<label>Log Retention (days)</label>
+<input name="log_retention_days" type="number" value="30" min="1" max="3650" required>
+
+<label>Log Level</label>
+<select name="log_level">
+<option>INFO</option>
+<option>DEBUG</option>
+<option>WARNING</option>
+<option>ERROR</option>
+<option>CRITICAL</option>
+</select>
+
+<label>Docker Mode</label>
+<select name="docker_mode">
+<option value="local">Local</option>
+<option value="remote">Remote</option>
+</select>
+
+<label>Docker Host IP</label>
+<input name="docker_host_ip">
+
+<button type="submit">Create Project</button>
+</form>
+</body>
+</html>

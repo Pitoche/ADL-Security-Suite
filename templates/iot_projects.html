@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IoT Projects | ADL Security Suite</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fa;
+            color: #243247;
+        }
+        header {
+            background: #10243a;
+            color: white;
+            padding: 22px 35px;
+        }
+        main {
+            padding: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #e2e6ec;
+        }
+        th {
+            background: #e9eff8;
+        }
+        a {
+            color: #2464b5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>ADL Security Suite — IoT Projects</h2>
+    </header>
+    <main>
+        <p><a href="/">← Back to Dashboard</a></p>
+        <h3>Existing IoT Projects ({{ projects|length }})</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Project Name</th>
+                    <th>Created</th>
+                    <th>Docker Mode</th>
+                    <th>Log Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ project.id }}</td>
+                    <td><a href="{{ url_for('iot.project_details', project_id=project.id) }}">{{ project.project_name }}</a></td>
+                    <td>{{ project.created_at }}</td>
+                    <td>{{ project.docker_mode }}</td>
+                    <td>{{ project.log_level }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">No projects found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
