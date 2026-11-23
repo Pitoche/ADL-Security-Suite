@@ -34,13 +34,46 @@
         a {
             color: #2464b5;
         }
+
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background: #10243a;
+            color: white;
+            position: fixed;
+            padding: 25px 15px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .sidebar h2 { font-size: 20px; }
+        .sidebar a {
+            display: block;
+            color: #dbeafe;
+            text-decoration: none;
+            padding: 14px 10px;
+        }
+        .sidebar a:hover { background: #1e3a5f; }
+        .main {
+            margin-left: 240px;
+            padding: 40px;
+        }
+
     </style>
 </head>
 <body>
+
+    <aside class="sidebar">
+        <h2>ADL SECURITY SUITE</h2>
+        <a href="/">Dashboard</a>
+        <a href="/iot/projects">IoT Vulnerability</a>
+        <a href="/iot/scanners">IoT Scanning Tools</a>
+        <a href="/reports">Evidence & Reports</a>
+    </aside>
+
     <header>
         <h2>ADL Security Suite — IoT Projects</h2>
     </header>
-    <main>
+    <main class="main">
         <p><a href="/">← Back to Dashboard</a></p>
         <h3>Existing IoT Projects ({{ projects|length }})</h3>
 
