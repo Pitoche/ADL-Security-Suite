@@ -164,3 +164,17 @@ def create_project():
         conn.commit()
 
     return redirect(url_for("iot.project_details", project_id=project_id))
+
+
+@iot_bp.route("/scanners", methods=["GET"])
+@login_required
+def scanner_catalogue():
+    """List approved IoT scanning tools without executing them."""
+    from flask import jsonify
+    from .scanner_catalog import SCANNER_CATALOG
+
+    return jsonify({
+        "categories": SCANNER_CATALOG,
+        "total_tools": sum(len(tools) for tools in SCANNER_CATALOG.values()),
+        "execution_enabled": False,
+    })
