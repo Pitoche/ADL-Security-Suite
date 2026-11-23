@@ -18,6 +18,14 @@ app.config["SECRET_KEY"] = (
 app.config["SESSION_COOKIE_HTTPONLY"] = True
 app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 
+# IoT database configuration
+app.config["IOT_DB_PATH"] = (
+    "/home/angel/ADL-TOOL-Repository/ADL-TOOL-DB.db"
+)
+app.config["IOT_ALLOW_PROJECT_WRITES"] = False
+app.config["IOT_ALLOW_LIVE_WRITES"] = False
+
+
 
 app.register_blueprint(iot_bp)
 app.register_blueprint(auth_bp)
