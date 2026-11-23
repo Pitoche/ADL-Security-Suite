@@ -1,3 +1,5 @@
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from modules.auth.routes import auth_bp
 from modules.iot.routes import iot_bp
 
@@ -19,6 +21,20 @@ app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 
 app.register_blueprint(iot_bp)
 app.register_blueprint(auth_bp)
+
+# Rate limiting for administrator authentication
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=[],
+    storage_uri="memory://"
+)
+
+# Protect the registered administrator login endpoint.
+app.view_functions["auth.login"] = limiter.limit(
+    "5 per minute",
+    methods=["POST"]
+)(app.view_functions["auth.login"])
 
 GUARD_DB = "/home/angel/ADL-TEST-GUARD/instance/adl_guard.db"
 
